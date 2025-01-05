@@ -25,7 +25,7 @@ while N != 0:
         DIV = 10**(ALG_CONT - 1)
         N_COP = N
         
-        for i in range(ALG_CONT - 1, 0 - 1, -1):
+        for i in range(ALG_CONT - 1, 0 - 1, -1): #laço para inverter o número e adicionar em posições inversa de lista criada anteriormente
             if DIV == 10 and i == 0:
                 ALG[i] = N_COP % DIV
                 VER = False
