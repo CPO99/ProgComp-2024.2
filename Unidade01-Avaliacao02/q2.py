@@ -22,30 +22,41 @@ while N != 0:
 
         VER = True
         ALG = [None] * ALG_CONT #lista para guardar cada algarismo do número
-        DIV = DIV**ALG_CONT
+        DIV = 10**(ALG_CONT - 1)
+        N_COP = N
         
-        for i in range(ALG_CONT, 0, -1):
-            print(i)
-
-        """
-                       
-            if DIV == 10 and len(ALG) == ALG_CONT - 1:
-                ALG.append(N % DIV)
+        for i in range(ALG_CONT - 1, 0 - 1, -1):
+            if DIV == 10 and i == 0:
+                ALG[i] = N_COP % DIV
+                VER = False
             elif DIV == 10:
-                ALG.append(N // DIV)
-                DIV *= 10
+                ALG[i] = N_COP // DIV
+                N_COP -= (N_COP // DIV) * DIV
             else:
-                if N // DIV != 0:
-                    ALG.append(N // DIV)
-                    DIV *= 10
-                else:
-                    VER = False
-        """
+                ALG[i] = N_COP // DIV
+                N_COP -= (N_COP // DIV) * DIV
+                DIV /= 10
+     
+        CONT = ALG_CONT - 1
+        SOMA = 0
+        
+        for i in ALG:
+            SOMA += i * (10**CONT)
+            CONT -= 1
+            
+        PALINDROMO = "NÃO"
+        
+        if N == SOMA:
+            PALINDROMO = "SIM"
+            
+        print("\nORIGINAL:",N)
+        print("INVERTIDO:",int(SOMA))
 
-        print("\nLista formada",ALG)
-        print("------------------------------------------------\n")
+        print("\nNÚMERO É PALÍNDROMO?",PALINDROMO)
+
+        print("\n------------------------------------------------\n")
             
 
     except Exception as e:
-        print("\n[ERRO] - VALOR INCORRETO INFORMADO. Tente novamente.\n", e)
-        print("------------------------------------------------\n")
+        print("\n[ERRO] - VALOR INCORRETO INFORMADO. Tente novamente:", e)
+        print("\n------------------------------------------------\n")
