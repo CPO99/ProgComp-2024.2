@@ -1,6 +1,6 @@
 import random
 
-print("T-E-R-M-O\n")
+print("T-E-R-M-O")
 
 palavras = (
     "ADAGA", "ADUBO", "AMIGO", "ANEXO", "ARAME", "ARARA", "ARROZ",
@@ -41,5 +41,10 @@ while PALAVRA_1 == PALAVRA_2:
 #laço das 7 tentativas possíveis para encontrar as duas palavras
 while TENT < 6:
     TENT += 1
-    print(TENTATIVAS[TENT],PALAVRA_1, PALAVRA_2)
+    print("\n" + TENTATIVAS[TENT],"TENTATIVA")
+    print("Palavra 1:",len(PALAVRA_1) * "-")
+    print("Palavra 2:",len(PALAVRA_2) * "-")
+    P = input("\nInforme a palavra:")[:len(PALAVRA_1)] #salvando somente os primeiros dígitos até a quantidade de caracteres dos termos 
+    print(P)
+    print("__________________________________________")
     
