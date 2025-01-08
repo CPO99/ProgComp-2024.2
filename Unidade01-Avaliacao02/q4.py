@@ -38,13 +38,26 @@ TENTATIVAS = ["PRIMEIRA","SEGUNDA","TERCEIRA","QUARTA","QUINTA","SEXTA","SÉTIMA
 while PALAVRA_1 == PALAVRA_2:
     PALAVRA_2 = random.choice(palavras)
 
+print("Palavra 1:",PALAVRA_1)
+print("Palavra 2:",PALAVRA_2)
+
 #laço das 7 tentativas possíveis para encontrar as duas palavras
 while TENT < 6:
     TENT += 1
     print("\n" + TENTATIVAS[TENT],"TENTATIVA")
-    print("Palavra 1:",len(PALAVRA_1) * "-")
-    print("Palavra 2:",len(PALAVRA_2) * "-")
-    P = input("\nInforme a palavra:")[:len(PALAVRA_1)] #salvando somente os primeiros dígitos até a quantidade de caracteres dos termos 
-    print(P)
-    print("__________________________________________")
+    P = input("\nInforme a palavra: ")[:len(PALAVRA_1)] #salvando somente os primeiros dígitos até a quantidade de caracteres dos termos
+
+    print("\nPalavra 1: ",end="")
+
+    CONT = -1
+        
+    for i in P:
+        CONT += 1
+ 
+        if P[CONT] == PALAVRA_1[CONT]:
+            print("\033[N;N;Nm Olá")#+i+"\033[m'",end="")
+        else:
+            print(i,end="")
+
+    print("\n__________________________________________")
     
