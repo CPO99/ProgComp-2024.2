@@ -2,7 +2,7 @@ import random
 
 print("T-E-R-M-O")
 
-palavras = (
+PALAVRAS = (
     "ADAGA", "ADUBO", "AMIGO", "ANEXO", "ARAME", "ARARA", "ARROZ",
     "ASILO", "ASTRO", "BAILE", "BAIXA", "BALAO", "BALSA", "BARCO",
     "BARRO", "BEIJO", "BICHO", "BORDA", "BORRA", "BRAVO", "BREJO",
@@ -28,36 +28,73 @@ palavras = (
 TENT = -1
 
 #definindo as duas palavras de forma aleatória 
-PALAVRA_1 = random.choice(palavras)
-PALAVRA_2 = random.choice(palavras)
+PALAVRA_1 = [random.choice(PALAVRAS), False]
+PALAVRA_2 = [random.choice(PALAVRAS), False]
 
 #lista com números ordinais, para uma melhor organização das tentativas
 TENTATIVAS = ["PRIMEIRA","SEGUNDA","TERCEIRA","QUARTA","QUINTA","SEXTA","SÉTIMA"]
+CLASSIFIC = ["Impossível","Ninja","Impressionante","Interessante","Pode melhorar","Foi por pouco"]
 
 #laço que garante a distinção entre as palavras 1 e 2
-while PALAVRA_1 == PALAVRA_2:
-    PALAVRA_2 = random.choice(palavras)
+while PALAVRA_1[0] == PALAVRA_2[0]:
+    PALAVRA_2[0] = random.choice(PALAVRAS)
 
-print("Palavra 1:",PALAVRA_1)
-print("Palavra 2:",PALAVRA_2)
+print("\nPalavra 1:",len(PALAVRA_1[0]) * "-")
+print("Palavra 2:",len(PALAVRA_2[0]) * "-")
+
+#cores
+VERD = "\033[42m"
+VERM = "\033[41m"
+AMA = "\033[43m"
+RES = "\033[m"
 
 #laço das 7 tentativas possíveis para encontrar as duas palavras
 while TENT < 6:
     TENT += 1
     print("\n" + TENTATIVAS[TENT],"TENTATIVA")
-    P = input("\nInforme a palavra: ")[:len(PALAVRA_1)] #salvando somente os primeiros dígitos até a quantidade de caracteres dos termos
+    P = input("\nInforme a palavra: ")[:len(PALAVRA_1[0])] #salvando somente os primeiros dígitos até a quantidade de caracteres dos termos
+    
+    if P in PALAVRAS:
+        print("\nPalavra 1: ",end="")
 
-    print("\nPalavra 1: ",end="")
-
-    CONT = -1
-        
-    for i in P:
-        CONT += 1
- 
-        if P[CONT] == PALAVRA_1[CONT]:
-            print("\033[N;N;Nm Olá")#+i+"\033[m'",end="")
+        CONT = -1
+        if P == PALAVRA_1[0] or PALAVRA_1[1] == True:   
+            PALAVRA_1[1] = True
+            print(f"{VERD}{PALAVRA_1[0]}{RES}",end="")
         else:
-            print(i,end="")
+            for i in P:
+                CONT += 1
+ 
+                if i == PALAVRA_1[0][CONT]:
+                    print(f"{VERD}{i}{RES}",end="")
+                elif i in PALAVRA_1[0]:
+                    print(f"{AMA}{i}{RES}",end="")
+                else:
+                    print(f"{VERM}{i}{RES}",end="")
+
+        CONT = -1
+    
+        print("\nPalavra 2: ",end="")
+        if P == PALAVRA_2[0] or PALAVRA_2[1] == True:   
+            PALAVRA_2[1] = True
+            print(f"{VERD}{PALAVRA_2[0]}{RES}",end="")
+        else:
+            for i in P:
+                CONT += 1
+ 
+                if i == PALAVRA_2[0][CONT]:
+                    print(f"{VERD}{i}{RES}",end="")
+                elif i in PALAVRA_2[0]:
+                    print(f"{AMA}{i}{RES}",end="")
+                else:
+                    print(f"{VERM}{i}{RES}",end="")
+    else:
+        print("\n[ERRO] - Palavra não aceita")
+        TENT -= 1
+
+    if PALAVRA_1[1] == True == PALAVRA_2[1]:
+        print(f"\n\n{CLASSIFIC[TENT]}!!! PARABÉNS!!")
+        input("")
 
     print("\n__________________________________________")
     
