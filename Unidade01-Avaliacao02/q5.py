@@ -5,6 +5,9 @@ DATA_ANO = 1968
 DATA_MES = 4
 DATA_DIA = 27
 
+#Ano controle
+ANO_CONTROLE = DATA_ANO
+
 #Dados da data atual
 HOJE = datetime.datetime.today() 
 HOJE_DIA = HOJE.day 
@@ -16,8 +19,11 @@ CONTADOR_DIAS = 0
 #Controlador do laço
 VER = True 
 
+print(f"QUANTOS SÁBADOS HOUVE DO DIA {DATA_DIA}, MÊS {DATA_MES} E ANO {DATA_ANO} ATÉ O DIA {HOJE_DIA}, MÊS {HOJE_MES} E ANO {HOJE_ANO}?\n")
+
 while VER: 
-    if DATA_ANO == 1968:
+    #Condição para pegar somente os dias do ano inicial
+    if ANO_CONTROLE == DATA_ANO:
         ANO = DATA_ANO
         MES = DATA_MES
         DIA = DATA_DIA
@@ -76,9 +82,9 @@ while VER:
             CONTADOR_DIAS = 366 - CONTADOR_DIAS
         else:
             CONTADOR_DIAS = 365 - CONTADOR_DIAS
-        print("DIAS ANO DE 1968:",CONTADOR_DIAS)
 
-    elif DATA_ANO == HOJE_ANO:
+    #Condição para pegar somente os dias do ano final
+    elif ANO_CONTROLE == HOJE_ANO:
         ANO = HOJE_ANO
         MES = HOJE_MES
         DIA = HOJE_DIA
@@ -134,15 +140,17 @@ while VER:
                CONTADOR_DIAS += 334 + DIA + BISSEXTO
 
         VER = False
+        
+    #Condição para pegar os dias dos anos entre o ano inicial e o ano final
     else:
-        if DATA_ANO % 400 == 0:
+        if ANO_CONTROLE % 400 == 0:
             CONTADOR_DIAS += 366
         else:
-            if DATA_ANO % 4 == 0 and DATA_ANO % 100 != 0:
+            if ANO_CONTROLE % 4 == 0 and ANO_CONTROLE % 100 != 0:
                 CONTADOR_DIAS += 366
             else:
                 CONTADOR_DIAS += 365
 
-    DATA_ANO += 1
+    ANO_CONTROLE += 1
 
 print("Quantidade de sábados:",CONTADOR_DIAS // 7)
