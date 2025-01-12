@@ -19,8 +19,6 @@ CONTADOR_DIAS = 0
 #Controlador do laço
 VER = True 
 
-print(f"QUANTOS SÁBADOS HOUVE DO DIA {DATA_DIA}, MÊS {DATA_MES} E ANO {DATA_ANO} ATÉ O DIA {HOJE_DIA}, MÊS {HOJE_MES} E ANO {HOJE_ANO}?\n")
-
 while VER: 
     #Condição para pegar somente os dias do ano inicial
     if ANO_CONTROLE == DATA_ANO:
@@ -140,7 +138,7 @@ while VER:
                CONTADOR_DIAS += 334 + DIA + BISSEXTO
 
         VER = False
-        
+
     #Condição para pegar os dias dos anos entre o ano inicial e o ano final
     else:
         if ANO_CONTROLE % 400 == 0:
@@ -153,4 +151,8 @@ while VER:
 
     ANO_CONTROLE += 1
 
-print("Quantidade de sábados:",CONTADOR_DIAS // 7)
+print(f"Dias passados desde o dia {DATA_DIA} do mês {DATA_MES} e ano {DATA_ANO}, até hoje: {CONTADOR_DIAS} dias")
+print(f"Quantidade de sábados até hoje: {CONTADOR_DIAS // 7} sábados")
+
+#input para o programa não fechar ao final, no terminal
+input()
