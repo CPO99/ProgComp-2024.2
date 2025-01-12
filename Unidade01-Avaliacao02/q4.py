@@ -1,7 +1,26 @@
 import random
 
-print("T-E-R-M-O")
+print("----------------------TERMO----------------------\n")
 
+#cores
+VERD = "\033[42m"
+VERM = "\033[41m"
+AMA = "\033[43m"
+RES = "\033[m"
+
+print("DICAS DO JOGO\n")
+print("-Cores das letras:")
+print(f"--{VERD}Verde{RES}: posição e letra corretos")
+print(f"--{AMA}Amarelo{RES}: letra existe, mas a posição está incorreta")
+print(f"--{VERM}Vermelho{RES}: letra incorreta\n")
+print("-Jogadas:")
+print("--Você tem até 7 tentativas para descobrir as palavras\n")
+print("-Obs:")
+print("--Só valem palavras pré-selecionadas, demais serão ignoradas e tentativa se repete\n\n")
+
+print("BOM JOGO!!!\n")
+
+#palavras pré-selecionadas
 PALAVRAS = (
     "ADAGA", "ADUBO", "AMIGO", "ANEXO", "ARAME", "ARARA", "ARROZ",
     "ASILO", "ASTRO", "BAILE", "BAIXA", "BALAO", "BALSA", "BARCO",
@@ -25,6 +44,7 @@ PALAVRAS = (
     "VALSA", "VENTO", "VERDE", "VISAO", "VINHO", "VIUVO", "ZEBRA"
 )
 
+#número de tentativas iniciando com -1, de modo que possa percorrer lista ou string iniciando no laço com zero
 TENT = -1
 
 #definindo as duas palavras de forma aleatória 
@@ -42,17 +62,13 @@ while PALAVRA_1[0] == PALAVRA_2[0]:
 print("\nPalavra 1:",len(PALAVRA_1[0]) * "-")
 print("Palavra 2:",len(PALAVRA_2[0]) * "-")
 
-#cores
-VERD = "\033[42m"
-VERM = "\033[41m"
-AMA = "\033[43m"
-RES = "\033[m"
-
 #laço das 7 tentativas possíveis para encontrar as duas palavras
 while TENT < 6:
     TENT += 1
     print("\n" + TENTATIVAS[TENT],"TENTATIVA")
-    P = input("\nInforme a palavra: ")[:len(PALAVRA_1[0])] #salvando somente os primeiros dígitos até a quantidade de caracteres dos termos
+    
+    #salvando somente os primeiros dígitos até a quantidade de caracteres dos termos, e convertendo para maiúsculo
+    P = input("\nInforme a palavra: ")[:len(PALAVRA_1[0])].upper()
     
     if P in PALAVRAS:
         print("\nPalavra 1: ",end="")
@@ -67,7 +83,7 @@ while TENT < 6:
  
                 if i == PALAVRA_1[0][CONT]:
                     print(f"{VERD}{i}{RES}",end="")
-                elif i in PALAVRA_1[0]:
+                elif i in PALAVRA_1[0][CONT:]:
                     print(f"{AMA}{i}{RES}",end="")
                 else:
                     print(f"{VERM}{i}{RES}",end="")
@@ -84,7 +100,7 @@ while TENT < 6:
  
                 if i == PALAVRA_2[0][CONT]:
                     print(f"{VERD}{i}{RES}",end="")
-                elif i in PALAVRA_2[0]:
+                elif i in PALAVRA_2[0][CONT:]:
                     print(f"{AMA}{i}{RES}",end="")
                 else:
                     print(f"{VERM}{i}{RES}",end="")
